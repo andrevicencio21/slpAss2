@@ -1,15 +1,9 @@
-import os
-
-
 def read_lines(file):
     """
     Returns a list of all lines (string) in the specified file in its original order, except for lines starting with a #. The lines
     returned must not end with new-line character(s).
     """
-    f = open(os.path.join(Enrol.path, file))
-    if f is None:
-        print 'There is no file'
-    
+    print 'f'
 
 def read_table(file):
     """
@@ -44,7 +38,7 @@ class Enrol():
         records from the specified directory
         '''
         self.path = path
-        
+        # readLine(path)
         
     def subjects(self):
         '''
