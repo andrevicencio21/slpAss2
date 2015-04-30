@@ -8,6 +8,7 @@ def read_lines(file):
     """
     f = open(os.path.join(Enrol.path, file))
     if f is None:
+        print 'f'
         print 'There is no file'
     
 
