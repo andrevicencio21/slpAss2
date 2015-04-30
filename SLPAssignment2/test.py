@@ -1,6 +1,17 @@
 import enrol
 import os
 
-e = enrol.Enrol(r'C:\Users\andre1\git\slpAss2\SLPAssignment2')
-print os.listdir(e.path)
+
+line = ["scr101.1:scr101:Mon 9.30:2.5.10:Dr. Sullivan",
+        "scr102.1:scr102:Tue 14.30:2.6.1:Prof. Wazowski",
+        "scr102.2:scr102:Wed 14.30:2.6.1:Prof. Wazowski",
+        "scr202A:scr202:Tue 15.30:23.5.32:Randy I"]
+
+line2 = ['dogs', 'cat', 'chicken']
+'''
 enrol.read_lines('SUBJECTS')
+
+enrol.read_table('CLASSES')
+'''
+
+enrol.write_lines('TESTFILE', line2)

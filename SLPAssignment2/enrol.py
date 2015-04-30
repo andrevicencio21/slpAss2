@@ -1,39 +1,48 @@
-import os
+import os.path
 
 
-def read_lines(file):
-    """
-    Returns a list of all lines (string) in the specified file in its original order, except for lines starting with a #. The lines
-    returned must not end with new-line character(s).
-    """
-    f = open(os.path.join(Enrol.path, file))
-    if f is None:
-        print 'f'
-        print 'There is no file'
+def read_lines(filename):
+    finalLines = []
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    for line in lines:
+        if line.rstrip() is not "" and line.rstrip()[0] is not "#":
+            if "#" not in line:
+                finalLines.append(line.rstrip('\n'))
+            else:
+                finalLines.append(line[0: line.find('#')])
+    f.close()
+    print finalLines #remove later
+    return finalLines
     
-
-def read_table(file):
-    """
-    Reads a file of colon-delimited lines and returns a list of lists in the original order, with each line being represented
-    as a list of strings, split on colons. For example, if the file example contains:
-    foo:1:12
-    bar:2:hello
-    Then read_table('example') will return a Python list [['foo','1','12'],['bar','2','hello']].
-    """
-    print 'f'
-
+def read_table(filename):
+    finalLines = []
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    for line in lines:
+        finalLines.append(line.rstrip('\n').split(':'))
+    f.close()
+    print finalLines #remove later
+    return finalLines
+    
 def write_lines(filename, lines):
-    write = True
-    """
-    Writes a list of strings safely to the specified file. Overwrites the file if it already exists. Line separators should be
-    added where necessary. If an error occurs during the process (i.e. an exception is caught), it swallows the
-    exception, restore the original file (if applicable) and returns 0. Returns 1 if the operation was successful.
-    """
-    if write:
+    backup = None
+    if os.path.isfile(filename):
+        f = open(filename, 'w+') #try and make this the actual test don't do os.path.isffile
+        backup = f.readlines()
+    else:
+        f = open(filename, 'w')
+    try:
+        for line in lines:
+            f.write(str(line) + '\n')
+        f.close()
         return 1
-    elif write is False:
+    except:
+        if backup is not None:
+            f.write(backup)
+        f.close()
         return 0
-    
+      
 class Enrol():
     
     
